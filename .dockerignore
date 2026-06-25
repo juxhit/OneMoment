@@ -1,0 +1,13 @@
+data/*
+!data/.gitkeep
+uploads/*
+!uploads/.gitkeep
+thumbs/*
+!thumbs/.gitkeep
+exports/*
+!exports/.gitkeep
+config/config.local.php
+.git
+.env
+docs
+exports/*.zip

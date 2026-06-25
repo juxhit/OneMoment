@@ -1,0 +1,45 @@
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    environment:
+      DOMAIN: ${DOMAIN}
+      PUBLIC_PATH: ${PUBLIC_PATH:-/onemoment/public}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      EVENT_ACCESS_SECRET: ${EVENT_ACCESS_SECRET}
+    volumes:
+      - onemoment_data:/var/www/html/data
+      - onemoment_uploads:/var/www/html/uploads
+      - onemoment_thumbs:/var/www/html/thumbs
+      - onemoment_exports:/var/www/html/exports
+    networks:
+      - web
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: ${DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL}
+    volumes:
+      - ./docker/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - web
+
+volumes:
+  onemoment_data:
+  onemoment_uploads:
+  onemoment_thumbs:
+  onemoment_exports:
+  caddy_data:
+  caddy_config:
+
+networks:
+  web:

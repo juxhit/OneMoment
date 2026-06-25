@@ -1,0 +1,25 @@
+# Runtime data
+/data/*.db
+/data/*.db-journal
+/data/*.db-wal
+/data/*.db-shm
+/data/*.png
+
+# Media
+/uploads/*
+!/uploads/.gitkeep
+/thumbs/*
+!/thumbs/.gitkeep
+/exports/*
+!/exports/.gitkeep
+
+# Config secrets
+/config/config.local.php
+.env
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.cursor/

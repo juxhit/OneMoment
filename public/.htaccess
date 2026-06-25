@@ -1,0 +1,12 @@
+RewriteEngine On
+
+RewriteBase /onemoment/public/
+
+RewriteRule ^e/([A-Za-z0-9_-]+)$ e.php?token=$1 [L,QSA]
+RewriteRule ^wall/([A-Za-z0-9_-]+)$ wall.php?token=$1 [L,QSA]
+RewriteRule ^join/([0-9]{6})$ join.php?code=$1 [L,QSA]
+
+RewriteRule ^i/t/([0-9]+)/(.+)$ serve.php?type=thumb&file=$2 [L,QSA]
+RewriteRule ^i/u/(.+)$ serve.php?type=upload&file=$1 [L,QSA]
+
+DirectoryIndex index.php
